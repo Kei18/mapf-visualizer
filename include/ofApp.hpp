@@ -1,10 +1,41 @@
 #pragma once
 
+#include "graph.hpp"
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp
 {
 public:
+  const Graph* G;
+  const Solution* P;  // plan
+  const int N;        // number of agents
+  const int T;        // makespan
+  const Config goals;
+
+  // size
+  const int scale;
+  const float agent_rad;
+  const float goal_rad;
+  const int font_size;
+
+  // flg
+  bool flg_autoplay;
+  bool flg_loop;
+  bool flg_goal;
+  bool flg_font;
+
+  enum struct LINE_MODE { STRAIGHT, PATH, NONE, NUM };
+  LINE_MODE line_mode;
+
+  // font
+  ofTrueTypeFont font;
+
+  // gui
+  ofxFloatSlider timestep_slider;
+  ofxFloatSlider speed_slider;
+  ofxPanel gui;
+
   void setup();
   void update();
   void draw();
@@ -21,5 +52,5 @@ public:
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
 
-  ofApp(char** map_file, char** plan_file);
+  ofApp(Graph* _G, Solution* _P);
 };

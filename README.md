@@ -1,14 +1,54 @@
-MAPF Visualizer
+mapf-visualizer
 ===
+
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+
+Simple multi-agent pathfinding (MAPF) visualizer for research usage.
+Developed for macOS, untested on Linux.
+
+![](./assets/demo_ost003d.gif)
+
+ost003d, planning with 1000 agents
+
+## Install
+
+```sh
+git clone --recursive git@github.com:Kei18/mapf-visualizer.git
+bash third_party/openFrameworks/scripts/osx/download_libs.sh
+make
+echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.bashrc
+```
+
+## Usage
+
+```sh
+mapf-visualizer assets/random-32-32-20.map assets/demo_random-32-32-20.txt
+```
+
+You can manipulate it via your keyboard. See printed info.
+
+## Input format of planning result
+
+e.g.,
+```txt
+0:(5,16),(21,29),[...]
+1:(5,17),(21,28),[...]
+[...]
+```
+
+`(x, y)` denotes location.
+`(0, 0)` is the left-top point.
+`(x, 0)` is the location at `x`-th column and 1st row.
 
 ## Notes
 
-```sh
-bash third_party/openFrameworks/scripts/osx/download_libs.sh
-make
-```
+- Please specify **correct** files. I omitted error handling
+- The grid maps and scenarios in `assets/` are from [MAPF benchmarks](https://movingai.com/benchmarks/mapf.html)
+- The font in `visualizer/bin/data` is from [Google Fonts](https://fonts.google.com/)
+- This repo is forked from a series of my previous studies such as [pibt2](https://kei18.github.io/pibt2), [mapf-IR](https://kei18.github.io/mapf-IR/), [tswap](https://kei18.github.io/tswap/), [otimapp](https://kei18.github.io/otimapp/), etc
+- Auto formatting (clang-format) when committing:
 
-```sh
+```export
 git config core.hooksPath .githooks && chmod a+x .githooks/pre-commit
 ```
 

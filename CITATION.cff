@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "mapf-visualizer"
+abstract: Simple multi-agent pathfinding (MAPF) visualizer for research usage
+authors:
+  - family-names: Okumura
+    given-names: Keisuke
+    orcid: https://orcid.org/0000-0002-9491-7367
+version: 0.1.0
+date-released: 2022-08-27
+license: MIT
+repository-code: "https://github.com/Kei18/mapf-visualizer"
