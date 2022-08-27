@@ -1,13 +1,21 @@
-#include "ofMain.h"
-#include "../include/ofApp.hpp"
+#include <fstream>
+#include <iostream>
 
-//========================================================================
+#include "../include/ofApp.hpp"
+#include "ofMain.h"
+
 int main(int argc, char *argv[])
 {
-  ofSetupOpenGL(1024,768, OF_WINDOW);			// <-------- setup the GL context
+  // simple arguments check
+  if (argc != 3 || !(std::ifstream(argv[1])) || !(std::ifstream(argv[2]))) {
+    std::cout << "Please check the arguments, e.g.,\n"
+              << "> execfile assets/random-32-32-20.map "
+                 "assets/demo_random-32-32-20.txt"
+              << std::endl;
+    return 0;
+  }
 
-  // this kicks off the running of my app
-  // can be OF_WINDOW or OF_FULLSCREEN
-  // pass in width and height too:
-  ofRunApp( new ofApp());
+  ofSetupOpenGL(100, 100, OF_WINDOW);
+  ofRunApp(new ofApp(&argv[1], &argv[2]));
+  return 0;
 }

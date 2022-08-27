@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "code formatting by clang-format"
-clang-format -i ./*/src/*.cpp ./*/include/*.hpp
+clang-format -i ./src/*.cpp ./include/*.hpp
 for FILE in `git diff --staged --name-only`; do
     git add $FILE
 done
