@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - '.github/workflows/**'
+
+jobs:
+  build-osx:
+    runs-on: macos-10.15
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: build
+        run: bash ./third_party/openFrameworks/scripts/osx/download_libs.sh && make
