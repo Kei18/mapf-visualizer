@@ -13,8 +13,6 @@ Based on [openFrameworks](https://openframeworks.cc/), written in C++, developed
 
 </div>
 
----
-
 ## Demo
 
 ![tunnel, planning with four agents](./assets/demo_tunnel.gif)
