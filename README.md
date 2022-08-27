@@ -1,6 +1,6 @@
 <div align="center">
 
-![](./assets/logo.png)
+<img src="./assets/logo.png" alt="Logo" width="400">
 
 # mapf-visualizer
 
