@@ -4,6 +4,11 @@ MAPF Visualizer
 ## Notes
 
 ```sh
+bash third_party/openFrameworks/scripts/osx/download_libs.sh
+make
+```
+
+```sh
 git config core.hooksPath .githooks && chmod a+x .githooks/pre-commit
 ```
 
