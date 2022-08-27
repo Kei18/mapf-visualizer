@@ -15,6 +15,7 @@ Written in C++, developed for macOS, untested on Linux.
 
 ```sh
 git clone --recursive git@github.com:Kei18/mapf-visualizer.git
+cd mapf-visualizer
 bash third_party/openFrameworks/scripts/osx/download_libs.sh
 make
 echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.bashrc
