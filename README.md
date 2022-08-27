@@ -2,13 +2,14 @@ mapf-visualizer
 ===
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![ci](https://github.com/Kei18/mapf-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Kei18/mapf-visualizer/actions/workflows/ci.yml)
 
-Simple multi-agent pathfinding (MAPF) visualizer for research usage.
-Developed for macOS, untested on Linux.
+Simple multi-agent pathfinding (MAPF) visualizer for research usage, based on [openFrameworks](https://openframeworks.cc/).
+Written in C++, developed for macOS, untested on Linux.
 
-![](./assets/demo_ost003d.gif)
+![tunnel, planning with four agents](./assets/demo_tunnel.gif)
 
-ost003d, planning with 1000 agents
+![ost003d, planning with 1000 agents](./assets/demo_ost003d.gif)
 
 ## Install
 
@@ -18,6 +19,8 @@ bash third_party/openFrameworks/scripts/osx/download_libs.sh
 make
 echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.bashrc
 ```
+
+required: around 10 minutes
 
 ## Usage
 
@@ -43,14 +46,14 @@ e.g.,
 ## Notes
 
 - Please specify **correct** files. I omitted error handling
-- The grid maps and scenarios in `assets/` are from [MAPF benchmarks](https://movingai.com/benchmarks/mapf.html)
+- The grid maps in `assets/` are from [MAPF benchmarks](https://movingai.com/benchmarks/mapf.html)
 - The font in `visualizer/bin/data` is from [Google Fonts](https://fonts.google.com/)
 - This repo is forked from a series of my previous studies such as [pibt2](https://kei18.github.io/pibt2), [mapf-IR](https://kei18.github.io/mapf-IR/), [tswap](https://kei18.github.io/tswap/), [otimapp](https://kei18.github.io/otimapp/), etc
 - Auto formatting (clang-format) when committing:
-
 ```export
 git config core.hooksPath .githooks && chmod a+x .githooks/pre-commit
 ```
+- I'm happy if this repo helps somebody. Please use "Cite this repository" on this page for citation.
 
 ## Licence
 
