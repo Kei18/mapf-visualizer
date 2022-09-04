@@ -26,6 +26,7 @@ static void printKeys()
   std::cout << "- left  : back" << std::endl;
   std::cout << "- up    : speed up" << std::endl;
   std::cout << "- down  : speed down" << std::endl;
+  std::cout << "- space : screenshot (saved in Desktop)" << std::endl;
   std::cout << "- esc : terminate" << std::endl;
 }
 
@@ -43,6 +44,7 @@ ofApp::ofApp(Graph* _G, Solution* _P)
       flg_loop(true),
       flg_goal(true),
       flg_font(false),
+      flg_snapshot(false),
       line_mode(LINE_MODE::STRAIGHT)
 {
 }
@@ -55,12 +57,17 @@ void ofApp::setup()
   ofBackground(Color::bg);
   ofSetCircleResolution(32);
   ofSetFrameRate(30);
-  font.load("MuseoModerno-VariableFont_wght.ttf", font_size);
+  font.load("MuseoModerno-VariableFont_wght.ttf", font_size, true, false, true);
 
   // setup gui
   gui.setup();
   gui.add(timestep_slider.setup("time step", 0, 0, T));
   gui.add(speed_slider.setup("speed", 0.1, 0, 1));
+
+  cam.setVFlip(true);
+  cam.setGlobalPosition(ofVec3f(w / 2, h / 2 - window_y_top_buffer / 2, 580));
+  cam.removeAllInteractions();
+  cam.addInteraction(ofEasyCam::TRANSFORM_TRANSLATE_XY, OF_MOUSE_BUTTON_LEFT);
 
   printKeys();
 }
@@ -85,6 +92,14 @@ void ofApp::update()
 
 void ofApp::draw()
 {
+  cam.begin();
+  if (flg_snapshot) {
+    ofBeginSaveScreenAsPDF(ofFilePath::getUserHomeDir() +
+                               "/Desktop/screenshot-" + ofGetTimestampString() +
+                               ".pdf",
+                           false);
+  }
+
   // draw graph
   ofSetLineWidth(1);
   ofFill();
@@ -176,6 +191,12 @@ void ofApp::draw()
     }
   }
 
+  if (flg_snapshot) {
+    ofEndSaveScreenAsPDF();
+    flg_snapshot = false;
+  }
+
+  cam.end();
   gui.draw();
 }
 
@@ -189,6 +210,7 @@ void ofApp::keyPressed(int key)
     flg_font = !flg_font;
     flg_font &= (scale - font_size > 6);
   }
+  if (key == 32) flg_snapshot = true;  // space
   if (key == 'v') {
     line_mode =
         static_cast<LINE_MODE>(((int)line_mode + 1) % (int)LINE_MODE::NUM);

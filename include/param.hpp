@@ -6,7 +6,7 @@ static constexpr int default_screen_height = 600;
 static constexpr int screen_x_buffer = 50;
 static constexpr int screen_y_buffer = 75;
 static constexpr int window_x_buffer = 25;
-static constexpr int window_y_top_buffer = 75;
+static constexpr int window_y_top_buffer = 50;
 static constexpr int window_y_bottom_buffer = 25;
 
 // // color scheme

@@ -24,6 +24,7 @@ public:
   bool flg_loop;
   bool flg_goal;
   bool flg_font;
+  bool flg_snapshot;
 
   enum struct LINE_MODE { STRAIGHT, PATH, NONE, NUM };
   LINE_MODE line_mode;
@@ -35,6 +36,9 @@ public:
   ofxFloatSlider timestep_slider;
   ofxFloatSlider speed_slider;
   ofxPanel gui;
+
+  // camera
+  ofEasyCam cam;
 
   void setup();
   void update();
