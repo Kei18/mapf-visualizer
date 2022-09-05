@@ -37,8 +37,8 @@ ofApp::ofApp(Graph* _G, Solution* _P)
       T(P->size() - 1),
       goals(P->back()),
       scale(get_scale(G)),
-      agent_rad(std::max((float)scale / std::sqrt(2) / 2, 3.0)),
-      goal_rad(std::max((float)scale / 4.0, 2.0)),
+      agent_rad(scale / std::sqrt(2) / 2),
+      goal_rad(scale / 4.0),
       font_size(std::max(scale / 8, 6)),
       flg_autoplay(true),
       flg_loop(true),
@@ -108,10 +108,10 @@ void ofApp::draw()
       auto index = x + y * G->width;
       if (G->U[index] == nullptr) continue;
       ofSetColor(Color::node);
-      int x_draw = x * scale - scale / 2 + 0.5 + window_x_buffer + scale / 2;
-      int y_draw =
-          y * scale - scale / 2 + 0.5 + window_y_top_buffer + scale / 2;
-      ofDrawRectangle(x_draw, y_draw, scale - 0.5, scale - 0.5);
+      auto x_draw = x * scale - scale / 2 + window_x_buffer + scale / 2 - 0.15;
+      auto y_draw =
+          y * scale - scale / 2 + window_y_top_buffer + scale / 2 - 0.15;
+      ofDrawRectangle(x_draw, y_draw, scale - 0.3, scale - 0.3);
       if (flg_font) {
         ofSetColor(Color::font);
         font.drawString(std::to_string(index), x_draw + 1,
@@ -181,7 +181,7 @@ void ofApp::draw()
     // agent at goal
     if (v == goals[i]) {
       ofSetColor(255, 255, 255);
-      ofDrawCircle(x, y, agent_rad - 2);
+      ofDrawCircle(x, y, agent_rad * 0.7);
     }
 
     // id

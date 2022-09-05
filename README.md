@@ -15,6 +15,8 @@ Based on [openFrameworks](https://openframeworks.cc/), written in C++, developed
 
 ## Demo
 
+![room-32-32-4](./assets/demo_room.gif)
+
 ![tunnel, planning with four agents](./assets/demo_tunnel.gif)
 
 ![ost003d, planning with 1000 agents](./assets/demo_ost003d.gif)
