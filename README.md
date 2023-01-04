@@ -24,7 +24,7 @@ Based on [openFrameworks](https://openframeworks.cc/), written in C++, developed
 ## Install
 
 ```sh
-git clone --recursive git@github.com:Kei18/mapf-visualizer.git
+git clone --recursive https://github.com/Kei18/mapf-visualizer.git
 cd mapf-visualizer
 bash third_party/openFrameworks/scripts/osx/download_libs.sh
 make
