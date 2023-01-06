@@ -9,7 +9,7 @@
 
 Simple multi-agent pathfinding (MAPF) visualizer for research usage.
 
-Based on [openFrameworks](https://openframeworks.cc/), written in C++, developed for macOS, untested on Linux.
+Based on [openFrameworks](https://openframeworks.cc/), written in C++, developed mainly for macOS
 
 </div>
 
@@ -23,6 +23,8 @@ Based on [openFrameworks](https://openframeworks.cc/), written in C++, developed
 
 ## Install
 
+### for macOS
+
 ```sh
 git clone --recursive https://github.com/Kei18/mapf-visualizer.git
 cd mapf-visualizer
@@ -32,6 +34,10 @@ echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.ba
 ```
 
 required: around 10 minutes
+
+### for Linux
+
+This repo was originally developed for macOS, but I heard that the visualizer worked on (Arch) Linux. To install, try `install_linux.sh`.
 
 ## Usage
 
