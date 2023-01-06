@@ -37,7 +37,7 @@ required: around 10 minutes
 
 ### for Linux
 
-This repo was originally developed for macOS, but I heard that the visualizer worked on (Arch) Linux. To install, try `install_linux.sh`.
+This repo was originally developed for macOS, but I heard that the visualizer worked on (Arch) Linux. To install, try `install_linux.sh`. You may need `sudo`.
 
 ## Usage
 
