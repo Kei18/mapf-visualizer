@@ -1,11 +1,11 @@
-name: build-macos-latest
+name: ci
 
 on:
   push:
     paths:
       - 'src/**'
       - 'include/**'
-      - '.github/workflows/build_macos.yml'
+      - '.github/workflows/**'
 
 jobs:
   build-osx:
