@@ -5,7 +5,9 @@
 # mapf-visualizer
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![ci](https://github.com/Kei18/mapf-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Kei18/mapf-visualizer/actions/workflows/ci.yml)
+
+[![build-macos-latest](https://github.com/Kei18/mapf-visualizer/actions/workflows/build_macos.yml/badge.svg)](https://github.com/Kei18/mapf-visualizer/actions/workflows/build_macos.yml)
+[![build-ubuntu-latest](https://github.com/Kei18/mapf-visualizer/actions/workflows/build_ubuntu.yml/badge.svg)](https://github.com/Kei18/mapf-visualizer/actions/workflows/build_ubuntu.yml)
 
 Simple & scalable multi-agent pathfinding (MAPF) visualizer for research usage.
 
