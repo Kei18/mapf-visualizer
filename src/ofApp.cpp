@@ -26,6 +26,8 @@ static void printKeys()
   std::cout << "- left  : back" << std::endl;
   std::cout << "- up    : speed up" << std::endl;
   std::cout << "- down  : speed down" << std::endl;
+  std::cout << "- i : toggle zoom in" << std::endl;
+  std::cout << "- o : toggle zoom out" << std::endl;
   std::cout << "- space : screenshot (saved in Desktop)" << std::endl;
   std::cout << "- esc : terminate" << std::endl;
 }
@@ -45,6 +47,8 @@ ofApp::ofApp(Graph* _G, Solution* _P)
       flg_goal(true),
       flg_font(false),
       flg_snapshot(false),
+      flg_zoomout(false),
+      flg_zoomin(false),
       line_mode(LINE_MODE::STRAIGHT)
 {
 }
@@ -87,6 +91,17 @@ void ofApp::update()
     } else {
       timestep_slider = T;
     }
+  }
+
+  if (flg_zoomout) {
+    auto campos = cam.getGlobalPosition();
+    campos.z = campos.z * 1.01;
+    cam.setGlobalPosition(campos);
+  }
+  if (flg_zoomin) {
+    auto campos = cam.getGlobalPosition();
+    campos.z = std::max(campos.z * 0.99, 50.0);
+    cam.setGlobalPosition(campos);
   }
 }
 
@@ -231,6 +246,12 @@ void ofApp::keyPressed(int key)
   if (key == OF_KEY_DOWN) {
     t = speed_slider - 0.001;
     speed_slider = std::max(t, (float)speed_slider.getMin());
+  }
+  if (key == 'i') {
+    flg_zoomin = !flg_zoomin;
+  }
+  if (key == 'o') {
+    flg_zoomout = !flg_zoomout;
   }
 }
 
