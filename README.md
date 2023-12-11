@@ -7,9 +7,9 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![ci](https://github.com/Kei18/mapf-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Kei18/mapf-visualizer/actions/workflows/ci.yml)
 
-Simple multi-agent pathfinding (MAPF) visualizer for research usage.
+Simple & scalable multi-agent pathfinding (MAPF) visualizer for research usage.
 
-Based on [openFrameworks](https://openframeworks.cc/), written in C++, developed mainly for macOS
+Based on [openFrameworks](https://openframeworks.cc/), written in C++
 
 </div>
 
@@ -35,9 +35,24 @@ echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.ba
 
 required: around 10 minutes
 
-### for Linux
+### for Ubuntu
 
-This repo was originally developed for macOS, but I heard that the visualizer worked on (Arch) Linux. To install, try `install_linux.sh`. You may need `sudo`.
+```sh
+git clone https://github.com/Kei18/mapf-visualizer.git
+cd mapf-visualizer
+wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_linux64gcc6_release.tar.gz
+tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 --one-top-level=openFrameworks
+sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
+sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
+make
+echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
+```
+
+#### for other Linux
+
+I heard that the visualizer worked on (Arch) Linux.
+To install, try `install_linux.sh`.
+You may need `sudo`.
 
 ## Usage
 
