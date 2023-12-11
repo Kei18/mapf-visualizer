@@ -65,10 +65,17 @@ e.g.,
 - Please specify **correct** files. I omitted error handling
 - The grid maps in `assets/` are from [MAPF benchmarks](https://movingai.com/benchmarks/mapf.html)
 - The font in `visualizer/bin/data` is from [Google Fonts](https://fonts.google.com/)
-- This repo is forked from a series of my previous studies such as [pibt2](https://kei18.github.io/pibt2), [mapf-IR](https://kei18.github.io/mapf-IR/), [tswap](https://kei18.github.io/tswap/), [otimapp](https://kei18.github.io/otimapp/), etc
-- Auto formatting (clang-format) when committing:
-```export
-git config core.hooksPath .githooks && chmod a+x .githooks/pre-commit
+- This repo is forked from a series of my previous studies such as
+  [pibt2](https://kei18.github.io/pibt2),
+  [mapf-IR](https://kei18.github.io/mapf-IR/),
+  [otimapp](https://kei18.github.io/otimapp/), etc.
+  This repo is compatible with
+  [lacam](https://kei18.github.io/lacam/),
+  [tswap](https://kei18.github.io/tswap/),
+  [pypibt](https://github.com/Kei18/pypibt), etc.
+- Install [pre-commit](https://pre-commit.com/):
+```sh
+pre-commit install
 ```
 - I'm happy if this repo helps somebody. Please use "Cite this repository" on this page for citation.
 
@@ -78,4 +85,4 @@ This software is released under the MIT License, see [LICENSE.txt](LICENCE.txt).
 
 ## Author
 
-[Keisuke Okumura](https://kei18.github.io) is a Ph.D. student at Tokyo Institute of Technology, interested in controlling multiple moving agents.
+[Keisuke Okumura](https://kei18.github.io)
