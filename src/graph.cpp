@@ -21,7 +21,7 @@ static const std::regex r_height = std::regex(R"(height\s(\d+))");
 static const std::regex r_width = std::regex(R"(width\s(\d+))");
 static const std::regex r_map = std::regex(R"(map)");
 
-Graph::Graph(char* filename) : V(Vertices()), width(0), height(0)
+Graph::Graph(std::string& filename) : V(Vertices()), width(0), height(0)
 {
   std::ifstream file(filename);
   if (!file) {

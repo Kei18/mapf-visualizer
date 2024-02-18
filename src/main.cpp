@@ -3,27 +3,37 @@
 #include <regex>
 
 #include "../include/ofApp.hpp"
+#include "../third_party/argparse/include/argparse/argparse.hpp"
 #include "ofMain.h"
 
 const std::regex r_config = std::regex(R"(^\d+:(.+))");
 const std::regex r_pos = std::regex(R"(\((\d+),(\d+)\),)");
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-  // simple arguments check
-  if (argc < 3 || !std::ifstream(argv[1]) || !std::ifstream(argv[2])) {
-    std::cout << "Please check the arguments, e.g.,\n"
-              << "> mapf-visualizer assets/random-32-32-20.map "
-                 "assets/demo_random-32-32-20.txt"
-              << std::endl;
-    return 0;
+  argparse::ArgumentParser program("mapf-visualizer", "0.1.0");
+  program.add_argument("-m", "--map").help("map file").required();
+  program.add_argument("-p", "--plan").help("plan file").required();
+  program.add_argument("--capture-only")
+      .help("take a screen shot and save it in ~/Desktop/")
+      .default_value(false)
+      .implicit_value(true);
+
+  try {
+    program.parse_known_args(argc, argv);
+  } catch (const std::runtime_error& err) {
+    std::cerr << err.what() << std::endl;
+    std::cerr << program;
+    std::exit(1);
   }
 
   // load graph
-  Graph G(argv[1]);
+  auto map_name = program.get<std::string>("map");
+  Graph G(map_name);
 
   // // load plan
-  auto solution_file = std::ifstream(argv[2]);
+  // const auto plan_name = ;
+  auto solution_file = std::ifstream(program.get<std::string>("plan"));
   Solution solution;
   std::string line;
   std::smatch m, results;
@@ -45,7 +55,6 @@ int main(int argc, char *argv[])
 
   // visualize
   ofSetupOpenGL(100, 100, OF_WINDOW);
-  ofRunApp(new ofApp(&G, &solution,
-                     (argc > 3 && std::string(argv[3]) == "capture_mode")));
+  ofRunApp(new ofApp(&G, &solution, program.get<bool>("capture-only")));
   return 0;
 }

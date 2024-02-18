@@ -1,3 +1,6 @@
 [submodule "third_party/openFrameworks"]
 	path = third_party/openFrameworks
 	url = https://github.com/openframeworks/openFrameworks.git
+[submodule "third_party/argparse"]
+	path = third_party/argparse
+	url = https://github.com/p-ranav/argparse.git

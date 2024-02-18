@@ -17,4 +17,4 @@ jobs:
           submodules: true
 
       - name: build
-        run: bash ./third_party/openFrameworks/scripts/osx/download_libs.sh && make
+        run: bash ./third_party/openFrameworks/scripts/osx/download_libs.sh && make -j4
