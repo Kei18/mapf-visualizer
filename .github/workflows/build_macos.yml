@@ -1,4 +1,4 @@
-name: ci
+name: build_macos
 
 on:
   push:

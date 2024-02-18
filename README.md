@@ -29,7 +29,7 @@ Based on [openFrameworks](https://openframeworks.cc/), written in C++
 git clone --recursive https://github.com/Kei18/mapf-visualizer.git
 cd mapf-visualizer
 bash third_party/openFrameworks/scripts/osx/download_libs.sh
-make
+make -j4
 echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.bashrc
 ```
 
@@ -44,7 +44,7 @@ wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/open
 tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 --one-top-level=openFrameworks
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
-make
+make -j4
 echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
 ```
 
@@ -57,7 +57,7 @@ You may need `sudo`.
 ## Usage
 
 ```sh
-mapf-visualizer assets/random-32-32-20.map assets/demo_random-32-32-20.txt
+mapf-visualizer --map assets/random-32-32-20.map --plan assets/demo_random-32-32-20.txt
 ```
 
 You can manipulate it via your keyboard. See printed info.
