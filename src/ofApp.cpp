@@ -32,7 +32,7 @@ static void printKeys()
   std::cout << "- esc : terminate" << std::endl;
 }
 
-ofApp::ofApp(Graph* _G, Solution* _P)
+ofApp::ofApp(Graph* _G, Solution* _P, bool _flg_capture_only)
     : G(_G),
       P(_P),
       N(P->front().size()),
@@ -42,14 +42,15 @@ ofApp::ofApp(Graph* _G, Solution* _P)
       agent_rad(scale / std::sqrt(2) / 2),
       goal_rad(scale / 4.0),
       font_size(std::max(scale / 8, 6)),
+      flg_capture_only(_flg_capture_only),
       flg_autoplay(true),
       flg_loop(true),
       flg_goal(true),
       flg_font(false),
-      flg_snapshot(false),
+      flg_snapshot(flg_capture_only),
       flg_zoomout(false),
       flg_zoomin(false),
-      line_mode(LINE_MODE::STRAIGHT)
+      line_mode(flg_capture_only ? LINE_MODE::PATH : LINE_MODE::STRAIGHT)
 {
 }
 
@@ -73,7 +74,7 @@ void ofApp::setup()
   cam.removeAllInteractions();
   cam.addInteraction(ofEasyCam::TRANSFORM_TRANSLATE_XY, OF_MOUSE_BUTTON_LEFT);
 
-  printKeys();
+  if (!flg_capture_only) printKeys();
 }
 
 void ofApp::update()
@@ -209,6 +210,7 @@ void ofApp::draw()
   if (flg_snapshot) {
     ofEndSaveScreenAsPDF();
     flg_snapshot = false;
+    if (flg_capture_only) std::exit(0);
   }
 
   cam.end();

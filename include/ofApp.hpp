@@ -20,6 +20,7 @@ public:
   const int font_size;
 
   // flg
+  bool flg_capture_only;
   bool flg_autoplay;
   bool flg_loop;
   bool flg_goal;
@@ -58,5 +59,5 @@ public:
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
 
-  ofApp(Graph* _G, Solution* _P);
+  ofApp(Graph* _G, Solution* _P, bool flg_capture_only = false);
 };
