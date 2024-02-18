@@ -18,6 +18,6 @@ jobs:
 
       - name: build
         run: |
-          bash third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
-          bash third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
+          sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
+          sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
           make -j4
