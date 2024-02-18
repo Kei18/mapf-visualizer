@@ -23,6 +23,8 @@ Based on [openFrameworks](https://openframeworks.cc/), written in C++
 
 ## Install
 
+This branch supports only macOS and C++17.
+
 ### for macOS
 
 ```sh
@@ -34,25 +36,6 @@ echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.ba
 ```
 
 required: around 10 minutes
-
-### for Ubuntu
-
-```sh
-git clone https://github.com/Kei18/mapf-visualizer.git
-cd mapf-visualizer
-wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_linux64gcc6_release.tar.gz
-tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 --one-top-level=openFrameworks
-sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
-sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
-make -j4
-echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
-```
-
-#### for other Linux
-
-I heard that the visualizer worked on (Arch) Linux.
-To install, try `install_linux.sh`.
-You may need `sudo`.
 
 ## Usage
 
