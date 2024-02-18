@@ -11,7 +11,7 @@ const std::regex r_pos = std::regex(R"(\((\d+),(\d+)\),)");
 int main(int argc, char *argv[])
 {
   // simple arguments check
-  if (argc != 3 || !std::ifstream(argv[1]) || !std::ifstream(argv[2])) {
+  if (argc < 3 || !std::ifstream(argv[1]) || !std::ifstream(argv[2])) {
     std::cout << "Please check the arguments, e.g.,\n"
               << "> mapf-visualizer assets/random-32-32-20.map "
                  "assets/demo_random-32-32-20.txt"
@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
 
   // visualize
   ofSetupOpenGL(100, 100, OF_WINDOW);
-  ofRunApp(new ofApp(&G, &solution));
+  ofRunApp(new ofApp(&G, &solution,
+                     (argc > 3 && std::string(argv[3]) == "--capture-only")));
   return 0;
 }
