@@ -18,7 +18,7 @@ jobs:
 
       - name: build
         run: |
-          apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+          sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
           sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
           sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
           make -j4
