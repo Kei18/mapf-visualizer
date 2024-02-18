@@ -1,0 +1,23 @@
+name: build_ubuntu
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - '.github/workflows/build_ubuntu.yml'
+
+jobs:
+  build-osx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: build
+        run: |
+          bash third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
+          bash third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
+          make -j4

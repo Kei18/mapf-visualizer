@@ -5,7 +5,7 @@ on:
     paths:
       - 'src/**'
       - 'include/**'
-      - '.github/workflows/**'
+      - '.github/workflows/build_macos.yml'
 
 jobs:
   build-osx:
