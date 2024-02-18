@@ -46,6 +46,6 @@ int main(int argc, char *argv[])
   // visualize
   ofSetupOpenGL(100, 100, OF_WINDOW);
   ofRunApp(new ofApp(&G, &solution,
-                     (argc > 3 && std::string(argv[3]) == "capture_mode")));
+                     (argc > 3 && std::string(argv[3]) == "--capture-only")));
   return 0;
 }
