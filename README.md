@@ -35,7 +35,7 @@ echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.ba
 
 required: around 10 minutes
 
-### for Ubuntu
+### for Ubuntu 20.04
 
 ```sh
 git clone https://github.com/Kei18/mapf-visualizer.git

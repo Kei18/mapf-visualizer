@@ -20,7 +20,7 @@ jobs:
         run: bash ./third_party/openFrameworks/scripts/osx/download_libs.sh && make -j4
 
   build-ubuntu:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
