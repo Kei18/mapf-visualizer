@@ -28,6 +28,7 @@ static void printKeys()
   std::cout << "- down  : speed down" << std::endl;
   std::cout << "- i : toggle zoom in" << std::endl;
   std::cout << "- o : toggle zoom out" << std::endl;
+  std::cout << "- G : toggle gridlines" << std::endl;
   std::cout << "- space : screenshot (saved in Desktop)" << std::endl;
   std::cout << "- esc : terminate" << std::endl;
 }
@@ -50,6 +51,7 @@ ofApp::ofApp(Graph* _G, Solution* _P, bool _flg_capture_only)
       flg_snapshot(flg_capture_only),
       flg_zoomout(false),
       flg_zoomin(false),
+      flg_grid(true),
       line_mode(flg_capture_only ? LINE_MODE::PATH : LINE_MODE::STRAIGHT)
 {
 }
@@ -127,7 +129,8 @@ void ofApp::draw()
       auto x_draw = x * scale - scale / 2 + window_x_buffer + scale / 2 - 0.15;
       auto y_draw =
           y * scale - scale / 2 + window_y_top_buffer + scale / 2 - 0.15;
-      ofDrawRectangle(x_draw, y_draw, scale - 0.3, scale - 0.3);
+      auto gridline_space = flg_grid ? 0.3 : 0.0;
+      ofDrawRectangle(x_draw, y_draw, scale - gridline_space, scale - gridline_space);
       if (flg_font) {
         ofSetColor(Color::font);
         font.drawString(std::to_string(index), x_draw + 1,
@@ -254,6 +257,9 @@ void ofApp::keyPressed(int key)
   }
   if (key == 'o') {
     flg_zoomout = !flg_zoomout;
+  }
+  if (key == 'G') {
+    flg_grid = !flg_grid;
   }
 }
 
