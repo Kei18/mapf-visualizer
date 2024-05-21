@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
   while (getline(solution_file, line)) {
     auto iter = line.cbegin();
     Config c;
-    while (iter < line.end()) {
+    while (iter < line.cend()) {
       auto search_end = std::min(iter + 128, line.cend());
       if (std::regex_search(iter, search_end, m, r_pos)) {
         auto x = std::stoi(m[1].str());
