@@ -28,6 +28,7 @@ public:
   bool flg_snapshot;
   bool flg_zoomout;
   bool flg_zoomin;
+  bool flg_grid;
 
   enum struct LINE_MODE { STRAIGHT, PATH, NONE, NUM };
   LINE_MODE line_mode;
