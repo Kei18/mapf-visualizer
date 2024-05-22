@@ -27,6 +27,9 @@ int main(int argc, char *argv[])
   std::string line;
   std::smatch m, results;
   while (getline(solution_file, line)) {
+    // so we only process real solution lines
+    if(line.find(":(") == std::string::npos) continue;
+
     auto iter = line.cbegin();
     Config c;
     while (iter < line.cend()) {
