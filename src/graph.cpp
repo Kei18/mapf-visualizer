@@ -9,7 +9,7 @@ Vertex::Vertex(int _id, int _index, int _x, int _y)
 {
 }
 
-Graph::Graph() : V(Vertices()), width(0), height(0) {}
+Graph::Graph() : V(Vertices()), width(0), height(0), sources(VertexSet()), sinks(VertexSet()) {}
 Graph::~Graph()
 {
   for (auto& v : V)
@@ -59,6 +59,8 @@ Graph::Graph(char* filename) : V(Vertices()), width(0), height(0)
       auto v = new Vertex(V.size(), index, x, y);
       V.push_back(v);
       U[index] = v;
+      if (s == 'S') { sources.insert(v); }
+      else if (s == 's') { sinks.insert(v); }
     }
     ++y;
   }

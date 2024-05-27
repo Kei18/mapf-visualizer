@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <set>
 
 struct Vertex {
   const int id;     // index for V in Graph
@@ -12,6 +13,7 @@ struct Vertex {
 };
 using Vertices = std::vector<Vertex*>;
 using Config = std::vector<Vertex*>;  // a set of locations for all agents
+using VertexSet = std::set<Vertex*>;  // like Vertices but with constant lookup
 using Solution = std::vector<Config>;
 
 struct Graph {
@@ -19,6 +21,8 @@ struct Graph {
   Vertices U;  // with nullptr
   int width;   // grid width
   int height;  // grid height
+  VertexSet sources; // MAPD source
+  VertexSet sinks;   // MAPD sink
   Graph();
   Graph(char* filename);  // taking map filename
   ~Graph();

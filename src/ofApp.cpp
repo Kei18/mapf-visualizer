@@ -125,7 +125,15 @@ void ofApp::draw()
     for (int y = 0; y < G->height; ++y) {
       auto index = x + y * G->width;
       if (G->U[index] == nullptr) continue;
-      ofSetColor(Color::node);
+
+      auto color = Color::node;
+      if (G->sources.count(G->U[index])) {
+        color = Color::source;
+      } else if (G->sinks.count(G->U[index])) {
+        color = Color::sink;
+      }
+      ofSetColor(color);
+
       auto x_draw = x * scale - scale / 2 + window_x_buffer + scale / 2 - 0.15;
       auto y_draw =
           y * scale - scale / 2 + window_y_top_buffer + scale / 2 - 0.15;
