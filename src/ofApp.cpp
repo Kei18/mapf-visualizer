@@ -127,9 +127,16 @@ void ofApp::draw()
       if (G->U[index] == nullptr) continue;
 
       auto color = Color::node;
-      if (G->sources.count(G->U[index])) {
+      bool source = G->sources.count(G->U[index]);
+      bool sink = G->sinks.count(G->U[index]);
+      bool home = G->homes.count(G->U[index]);
+      if (home) {
+        color = Color::robot_home;
+      } else if (source && sink) {
+        color = Color::source_sink;
+      } else if (source) {
         color = Color::source;
-      } else if (G->sinks.count(G->U[index])) {
+      } else if (sink) {
         color = Color::sink;
       }
       ofSetColor(color);

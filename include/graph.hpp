@@ -23,6 +23,7 @@ struct Graph {
   int height;  // grid height
   VertexSet sources; // MAPD source
   VertexSet sinks;   // MAPD sink
+  VertexSet homes;   // Robot homes
   Graph();
   Graph(char* filename);  // taking map filename
   ~Graph();
