@@ -45,7 +45,17 @@ tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
 make -j4
-echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
+echo -e "\nexport PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
+```
+
+#### If you use ZSH
+Replace the last line with the following:
+```sh
+echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.zshrc
+```
+
+```sh
+echo -e "\nexport PATH=$(pwd)/bin:\$PATH" >> ~/.zshrc
 ```
 
 #### for other Linux
@@ -53,6 +63,9 @@ echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
 I heard that the visualizer worked on (Arch) Linux.
 To install, try `install_linux.sh`.
 You may need `sudo`.
+
+#### Note
+The changes will be applied after you restart your terminal. To apply the changes immediately, run `source ~/.bashrc` or `source ~/.zshrc`.
 
 ## Usage
 
