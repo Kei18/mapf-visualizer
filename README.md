@@ -51,7 +51,7 @@ echo -e "\nexport PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
 #### If you use ZSH
 Replace the last line with the following:
 ```sh
-echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.zshrc
+echo -e "\nexport PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.zshrc
 ```
 
 ```sh
