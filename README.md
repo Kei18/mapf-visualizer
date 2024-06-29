@@ -30,7 +30,7 @@ git clone --recursive https://github.com/Kei18/mapf-visualizer.git
 cd mapf-visualizer
 bash third_party/openFrameworks/scripts/osx/download_libs.sh
 make -j4
-echo "export PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.bashrc
+echo -e "\nexport PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> ~/.bashrc
 ```
 
 required: around 10 minutes
