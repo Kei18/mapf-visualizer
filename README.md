@@ -35,12 +35,12 @@ echo -e "\nexport PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> 
 
 required: around 10 minutes
 
-### for Ubuntu 20.04
+### for Ubuntu 24.04
 
 ```sh
 git clone https://github.com/Kei18/mapf-visualizer.git
 cd mapf-visualizer
-wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_linux64gcc6_release.tar.gz
+wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.12.0/of_v0.12.0_linux64gcc6_release.tar.gz
 tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 --one-top-level=openFrameworks
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
