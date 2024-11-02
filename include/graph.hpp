@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <set>
+#include <string>
 
 struct Vertex {
   const int id;     // index for V in Graph
@@ -27,4 +28,72 @@ struct Graph {
   Graph();
   Graph(char* filename);  // taking map filename
   ~Graph();
+};
+
+class Orientation
+{
+public:
+  enum Value {
+    NONE = 0,
+    UP = 1,
+    LEFT = 2,
+    DOWN = 3,
+    RIGHT = 4,
+    NUM_ORIENTATIONS = 5
+  };
+
+  constexpr Orientation(Value v) : value(v) {}
+  constexpr bool operator==(const Orientation::Value& v) const
+  {
+    return value == v;
+  }
+  constexpr bool operator==(const Orientation& o) const
+  {
+    return value == o.value;
+  }
+  constexpr bool operator!=(const Orientation::Value& v) const
+  {
+    return value != v;
+  }
+  constexpr bool operator!=(const Orientation& o) const
+  {
+    return value != o.value;
+  }
+
+  static Orientation from_string(const std::string& s)
+  {
+    if (s == "UP") return Orientation::UP;
+    if (s == "LEFT") return Orientation::LEFT;
+    if (s == "DOWN") return Orientation::DOWN;
+    if (s == "RIGHT") return Orientation::RIGHT;
+    return Orientation::NONE;
+  }
+
+  std::string to_str() const
+  {
+    switch (value) {
+      case UP: return "UP";
+      case LEFT: return "LEFT";
+      case DOWN: return "DOWN";
+      case RIGHT: return "RIGHT";
+      default: return "NONE";
+    }
+  }
+
+  float to_angle() const
+  {
+    switch (value) {
+      case UP: return 90;
+      case LEFT: return 180;
+      case DOWN: return 270;
+      case RIGHT: return 0;
+      default: return 0;
+    }
+  }
+
+  constexpr operator Value() const { return value; }
+  explicit operator bool() const = delete;
+
+private:
+  Value value;
 };

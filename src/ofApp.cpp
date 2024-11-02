@@ -33,9 +33,10 @@ static void printKeys()
   std::cout << "- esc : terminate" << std::endl;
 }
 
-ofApp::ofApp(Graph* _G, Solution* _P, bool _flg_capture_only)
+ofApp::ofApp(Graph* _G, Solution* _P, std::vector<std::vector<Orientation>> _O, bool _flg_capture_only)
     : G(_G),
       P(_P),
+      O(_O),
       N(P->front().size()),
       T(P->size() - 1),
       goals(P->back()),
@@ -175,11 +176,18 @@ void ofApp::draw()
     auto v = P->at(t1)[i];
     float x = v->x;
     float y = v->y;
+    auto o = O[t1][i];
+    auto angle = o.to_angle();
 
     if (t2 <= T) {
       auto u = P->at(t2)[i];
       x += (u->x - x) * (timestep_slider - t1);
       y += (u->y - y) * (timestep_slider - t1);
+
+      auto angle_next = O[t2][i].to_angle();
+      auto diff = angle_next - angle;
+      if (fabs(diff) > 180.0) diff += 360.0;
+      angle += diff * (timestep_slider - t1);
     }
     x *= scale;
     y *= scale;
@@ -213,9 +221,19 @@ void ofApp::draw()
     }
 
     // agent at goal
-    if (v == goals[i]) {
+    if (v == goals[i] && o == O.back()[i]) {
       ofSetColor(255, 255, 255);
       ofDrawCircle(x, y, agent_rad * 0.7);
+    }
+
+    // agent orientation
+    if (o != Orientation::NONE) {
+      ofSetColor(255, 255, 255);
+      ofPushMatrix();
+      ofTranslate(x, y);
+      ofRotateZDeg(angle);
+      ofDrawTriangle(0, agent_rad, 0, -agent_rad, agent_rad, 0);
+      ofPopMatrix();
     }
 
     // id

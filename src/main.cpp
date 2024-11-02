@@ -5,7 +5,7 @@
 #include "../include/ofApp.hpp"
 #include "ofMain.h"
 
-const std::regex r_pos = std::regex(R"(\((\d+),(\d+)\),)");
+const std::regex r_pos = std::regex(R"(\((\d+),(\d+),?([A-Z]+)?\),)");
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
   // load plan
   auto solution_file = std::ifstream(argv[2]);
   Solution solution;
+  std::vector<std::vector<Orientation>> orientations;
   std::string line;
   std::smatch m, results;
   while (getline(solution_file, line)) {
@@ -32,11 +33,16 @@ int main(int argc, char *argv[])
 
     auto iter = line.cbegin();
     Config c;
+    std::vector<Orientation> o;
     while (iter < line.cend()) {
       auto search_end = std::min(iter + 128, line.cend());
       if (std::regex_search(iter, search_end, m, r_pos)) {
         auto x = std::stoi(m[1].str());
         auto y = std::stoi(m[2].str());
+        if (m[3].matched) {
+          std::cout << m[3].str() << std::endl;
+          o.push_back(Orientation::from_string(m[3].str()));
+        }
         c.push_back(G.U[G.width * y + x]);
         iter += m[0].length();
       } else {
@@ -44,12 +50,13 @@ int main(int argc, char *argv[])
       }
     }
     solution.push_back(c);
+    orientations.push_back(o);
   }
   solution_file.close();
 
   // visualize
   ofSetupOpenGL(100, 100, OF_WINDOW);
-  ofRunApp(new ofApp(&G, &solution,
+  ofRunApp(new ofApp(&G, &solution, orientations,
                      (argc > 3 && std::string(argv[3]) == "--capture-only")));
   return 0;
 }
