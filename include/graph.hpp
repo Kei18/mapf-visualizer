@@ -35,10 +35,10 @@ class Orientation
 public:
   enum Value {
     NONE = 0,
-    UP = 1,
-    LEFT = 2,
-    DOWN = 3,
-    RIGHT = 4,
+    X_MINUS = 1,
+    X_PLUS = 2,
+    Y_MINUS = 3,
+    Y_PLUS = 4,
     NUM_ORIENTATIONS = 5
   };
 
@@ -62,20 +62,20 @@ public:
 
   static Orientation from_string(const std::string& s)
   {
-    if (s == "UP") return Orientation::UP;
-    if (s == "LEFT") return Orientation::LEFT;
-    if (s == "DOWN") return Orientation::DOWN;
-    if (s == "RIGHT") return Orientation::RIGHT;
+    if (s == "X_MINUS") return Orientation::X_MINUS;
+    if (s == "X_PLUS") return Orientation::X_PLUS;
+    if (s == "Y_MINUS") return Orientation::Y_MINUS;
+    if (s == "Y_MINUS") return Orientation::Y_MINUS;
     return Orientation::NONE;
   }
 
   std::string to_str() const
   {
     switch (value) {
-      case UP: return "UP";
-      case LEFT: return "LEFT";
-      case DOWN: return "DOWN";
-      case RIGHT: return "RIGHT";
+      case X_MINUS: return "X_MINUS";
+      case X_PLUS: return "X_PLUS";
+      case Y_MINUS: return "Y_MINUS";
+      case Y_PLUS: return "Y_PLUS";
       default: return "NONE";
     }
   }
@@ -83,10 +83,10 @@ public:
   float to_angle() const
   {
     switch (value) {
-      case UP: return 90;
-      case LEFT: return 180;
-      case DOWN: return 270;
-      case RIGHT: return 0;
+      case X_MINUS: return 180;
+      case X_PLUS: return 0;
+      case Y_MINUS: return 90;
+      case Y_PLUS: return 270;
       default: return 0;
     }
   }

@@ -176,7 +176,8 @@ void ofApp::draw()
     auto v = P->at(t1)[i];
     float x = v->x;
     float y = v->y;
-    auto o = O[t1][i];
+    Orientation o = Orientation::NONE;
+    if (O[t1].size() > i) o = O[t1][i];
     auto angle = o.to_angle();
 
     if (t2 <= T) {
@@ -184,10 +185,12 @@ void ofApp::draw()
       x += (u->x - x) * (timestep_slider - t1);
       y += (u->y - y) * (timestep_slider - t1);
 
-      auto angle_next = O[t2][i].to_angle();
-      auto diff = angle_next - angle;
-      if (fabs(diff) > 180.0) diff += 360.0;
-      angle += diff * (timestep_slider - t1);
+      if (o != Orientation::NONE) {
+        auto angle_next = O[t2][i].to_angle();
+        auto diff = angle_next - angle;
+        if (fabs(diff) > 180.0) diff += 360.0;
+        angle += diff * (timestep_slider - t1);
+      }
     }
     x *= scale;
     y *= scale;

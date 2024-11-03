@@ -40,7 +40,6 @@ int main(int argc, char *argv[])
         auto x = std::stoi(m[1].str());
         auto y = std::stoi(m[2].str());
         if (m[3].matched) {
-          std::cout << m[3].str() << std::endl;
           o.push_back(Orientation::from_string(m[3].str()));
         }
         c.push_back(G.U[G.width * y + x]);
