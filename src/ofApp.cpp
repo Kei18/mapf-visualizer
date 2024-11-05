@@ -163,6 +163,16 @@ void ofApp::draw()
       int x = g->x * scale + window_x_buffer + scale / 2;
       int y = g->y * scale + window_y_top_buffer + scale / 2;
       ofDrawRectangle(x - goal_rad / 2, y - goal_rad / 2, goal_rad, goal_rad);
+
+      auto o = O.back()[i];
+      if (o != Orientation::NONE) {
+        ofSetColor(255, 255, 255);
+        ofPushMatrix();
+        ofTranslate(x, y);
+        ofRotateZDeg(o.to_angle());
+        ofDrawTriangle(0, goal_rad / 2, 0, -goal_rad / 2, goal_rad / 2, 0);
+        ofPopMatrix();
+      }
     }
   }
 
