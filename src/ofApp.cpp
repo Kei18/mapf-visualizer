@@ -188,7 +188,8 @@ void ofApp::draw()
       if (o != Orientation::NONE) {
         auto angle_next = O[t2][i].to_angle();
         auto diff = angle_next - angle;
-        if (fabs(diff) > 180.0) diff += 360.0;
+        if (diff > 180.0f) diff -= 360.0f;
+        if (diff < -180.0f) diff += 360.0f;
         angle += diff * (timestep_slider - t1);
       }
     }
