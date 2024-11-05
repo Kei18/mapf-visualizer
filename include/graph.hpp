@@ -65,7 +65,7 @@ public:
     if (s == "X_MINUS") return Orientation::X_MINUS;
     if (s == "X_PLUS") return Orientation::X_PLUS;
     if (s == "Y_MINUS") return Orientation::Y_MINUS;
-    if (s == "Y_MINUS") return Orientation::Y_MINUS;
+    if (s == "Y_PLUS") return Orientation::Y_PLUS;
     return Orientation::NONE;
   }
 
@@ -85,8 +85,8 @@ public:
     switch (value) {
       case X_MINUS: return 180;
       case X_PLUS: return 0;
-      case Y_MINUS: return 90;
-      case Y_PLUS: return 270;
+      case Y_MINUS: return 270;
+      case Y_PLUS: return 90;
       default: return 0;
     }
   }

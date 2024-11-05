@@ -5,7 +5,7 @@
 #include "../include/ofApp.hpp"
 #include "ofMain.h"
 
-const std::regex r_pos = std::regex(R"(\((\d+),(\d+),?([A-Z]+)?\),)");
+const std::regex r_pos = std::regex(R"(\((\d+),(\d+),?([XY]{1}_[A-Z]{4,5})?\),)");
 
 int main(int argc, char *argv[])
 {
