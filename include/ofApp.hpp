@@ -9,7 +9,6 @@ class ofApp : public ofBaseApp
 public:
   const Graph* G;
   const Solution* P;  // plan
-  const std::vector<std::vector<Orientation>> O;
   const int N;        // number of agents
   const int T;        // makespan
   const Config goals;
@@ -61,5 +60,5 @@ public:
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
 
-  ofApp(Graph* _G, Solution* _P, std::vector<std::vector<Orientation>> _O, bool flg_capture_only = false);
+  ofApp(Graph* _G, Solution* _P, bool flg_capture_only = false);
 };

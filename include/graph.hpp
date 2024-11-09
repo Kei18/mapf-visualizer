@@ -12,19 +12,6 @@ struct Vertex {
 
   Vertex(int _id, int _index, int _x, int _y);
 };
-using Vertices = std::vector<Vertex*>;
-using Config = std::vector<Vertex*>;  // a set of locations for all agents
-using Solution = std::vector<Config>;
-
-struct Graph {
-  Vertices V;  // without nullptr
-  Vertices U;  // with nullptr
-  int width;   // grid width
-  int height;  // grid height
-  Graph();
-  Graph(char* filename);  // taking map filename
-  ~Graph();
-};
 
 class Orientation
 {
@@ -64,32 +51,34 @@ public:
     if (s == "Y_PLUS") return Orientation::Y_PLUS;
     return Orientation::NONE;
   }
-
-  std::string to_str() const
-  {
-    switch (value) {
-      case X_MINUS: return "X_MINUS";
-      case X_PLUS: return "X_PLUS";
-      case Y_MINUS: return "Y_MINUS";
-      case Y_PLUS: return "Y_PLUS";
-      default: return "NONE";
-    }
-  }
-
-  float to_angle() const
-  {
-    switch (value) {
-      case X_MINUS: return 180;
-      case X_PLUS: return 0;
-      case Y_MINUS: return 270;
-      case Y_PLUS: return 90;
-      default: return 0;
-    }
-  }
+  std::string to_str() const;
+  float to_angle() const;
 
   constexpr operator Value() const { return value; }
   explicit operator bool() const = delete;
 
 private:
   Value value;
+};
+
+struct Pose {
+  Vertex* v;
+  Orientation o;
+  Pose(Vertex* _v, Orientation _o) : v(_v), o(_o) {}
+  Pose(Vertex* _v) : v(_v), o(Orientation::NONE) {}
+  bool operator==(const Pose& p) const { return v == p.v && o == p.o; }
+};
+
+using Vertices = std::vector<Vertex*>;
+using Config = std::vector<Pose>;  // a set of locations and orientations for all agents
+using Solution = std::vector<Config>;
+
+struct Graph {
+  Vertices V;  // without nullptr
+  Vertices U;  // with nullptr
+  int width;   // grid width
+  int height;  // grid height
+  Graph();
+  Graph(char* filename);  // taking map filename
+  ~Graph();
 };
