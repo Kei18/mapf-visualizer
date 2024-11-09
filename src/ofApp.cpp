@@ -126,21 +126,7 @@ void ofApp::draw()
     for (int y = 0; y < G->height; ++y) {
       auto index = x + y * G->width;
       if (G->U[index] == nullptr) continue;
-
       auto color = Color::node;
-      bool source = G->sources.count(G->U[index]);
-      bool sink = G->sinks.count(G->U[index]);
-      bool home = G->homes.count(G->U[index]);
-      if (home) {
-        color = Color::robot_home;
-      } else if (source && sink) {
-        color = Color::source_sink;
-      } else if (source) {
-        color = Color::source;
-      } else if (sink) {
-        color = Color::sink;
-      }
-      ofSetColor(color);
 
       auto x_draw = x * scale - scale / 2 + window_x_buffer + scale / 2 - 0.15;
       auto y_draw =
