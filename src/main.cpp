@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 
     auto iter = line.cbegin();
     Config c;
-    std::vector<Orientation> o;
     while (iter < line.cend()) {
       auto search_end = std::min(iter + 128, line.cend());
       if (std::regex_search(iter, search_end, m, r_pos)) {

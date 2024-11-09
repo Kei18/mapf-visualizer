@@ -126,7 +126,6 @@ void ofApp::draw()
       auto index = x + y * G->width;
       if (G->U[index] == nullptr) continue;
       ofSetColor(Color::node);
-
       auto x_draw = x * scale - scale / 2 + window_x_buffer + scale / 2 - 0.15;
       auto y_draw =
           y * scale - scale / 2 + window_y_top_buffer + scale / 2 - 0.15;
