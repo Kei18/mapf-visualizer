@@ -131,7 +131,8 @@ void ofApp::draw()
       auto y_draw =
           y * scale - scale / 2 + window_y_top_buffer + scale / 2 - 0.15;
       auto gridline_space = flg_grid ? 0.3 : 0.0;
-      ofDrawRectangle(x_draw, y_draw, scale - gridline_space, scale - gridline_space);
+      ofDrawRectangle(x_draw, y_draw, scale - gridline_space,
+                      scale - gridline_space);
       if (flg_font) {
         ofSetColor(Color::font);
         font.drawString(std::to_string(index), x_draw + 1,

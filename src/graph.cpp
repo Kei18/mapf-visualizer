@@ -1,9 +1,9 @@
 #include "../include/graph.hpp"
 
+#include <cmath>
 #include <fstream>
 #include <iostream>
 #include <regex>
-#include <cmath>
 
 Vertex::Vertex(int _id, int _index, int _x, int _y)
     : id(_id), index(_index), x(_x), y(_y), neighbor(Vertices())
@@ -97,21 +97,31 @@ Graph::Graph(char* filename) : V(Vertices()), width(0), height(0)
 std::string Orientation::to_str() const
 {
   switch (value) {
-    case X_MINUS: return "X_MINUS";
-    case X_PLUS: return "X_PLUS";
-    case Y_MINUS: return "Y_MINUS";
-    case Y_PLUS: return "Y_PLUS";
-    default: return "NONE";
+    case X_MINUS:
+      return "X_MINUS";
+    case X_PLUS:
+      return "X_PLUS";
+    case Y_MINUS:
+      return "Y_MINUS";
+    case Y_PLUS:
+      return "Y_PLUS";
+    default:
+      return "NONE";
   }
 }
 
 float Orientation::to_angle() const
 {
   switch (value) {
-    case X_MINUS: return 180;
-    case X_PLUS: return 0;
-    case Y_MINUS: return 270;
-    case Y_PLUS: return 90;
-    default: return NAN;
+    case X_MINUS:
+      return 180;
+    case X_PLUS:
+      return 0;
+    case Y_MINUS:
+      return 270;
+    case Y_PLUS:
+      return 90;
+    default:
+      return NAN;
   }
 }

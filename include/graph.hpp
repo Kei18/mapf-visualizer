@@ -1,7 +1,7 @@
 #pragma once
-#include <vector>
 #include <set>
 #include <string>
+#include <vector>
 
 struct Vertex {
   const int id;     // index for V in Graph
@@ -70,7 +70,8 @@ struct Pose {
 };
 
 using Vertices = std::vector<Vertex*>;
-using Config = std::vector<Pose>;  // a set of locations and orientations for all agents
+using Config =
+    std::vector<Pose>;  // a set of locations and orientations for all agents
 using Solution = std::vector<Config>;
 
 struct Graph {
