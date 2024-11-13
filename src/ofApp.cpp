@@ -150,11 +150,12 @@ void ofApp::draw()
       int y = g->y * scale + window_y_top_buffer + scale / 2;
       ofDrawRectangle(x - goal_rad / 2, y - goal_rad / 2, goal_rad, goal_rad);
 
-      if (o != Orientation::NONE) {
+      auto angle = o.to_angle();
+      if (angle.has_value()) {
         ofSetColor(255, 255, 255);
         ofPushMatrix();
         ofTranslate(x, y);
-        ofRotateZDeg(o.to_angle());
+        ofRotateZDeg(angle.value());
         ofDrawTriangle(0, goal_rad / 2, 0, -goal_rad / 2, goal_rad / 2, 0);
         ofPopMatrix();
       }
@@ -173,7 +174,7 @@ void ofApp::draw()
     auto o = p_t1.o;
     float x = v->x;
     float y = v->y;
-    float angle = o.to_angle();
+    auto angle = o.to_angle();
 
     if (t2 <= T) {
       auto p_t2 = P->at(t2)[i];
@@ -181,12 +182,14 @@ void ofApp::draw()
       x += (u->x - x) * (timestep_slider - t1);
       y += (u->y - y) * (timestep_slider - t1);
 
-      if (o != Orientation::NONE) {
-        float angle_next = p_t2.o.to_angle();
-        float diff = angle_next - angle;
-        if (diff > 180.0f) diff -= 360.0f;
-        if (diff < -180.0f) diff += 360.0f;
-        angle += diff * (timestep_slider - t1);
+      if (angle.has_value()) {
+        auto angle_next = p_t2.o.to_angle();
+        if (angle_next.has_value()) {
+          float diff = angle_next.value() - angle.value();
+          if (diff > 180.0f) diff -= 360.0f;
+          if (diff < -180.0f) diff += 360.0f;
+          angle.value() += diff * (timestep_slider - t1);
+        }
       }
     }
     x *= scale;
@@ -227,11 +230,11 @@ void ofApp::draw()
     }
 
     // agent orientation
-    if (o != Orientation::NONE) {
+    if (angle.has_value()) {
       ofSetColor(255, 255, 255);
       ofPushMatrix();
       ofTranslate(x, y);
-      ofRotateZDeg(angle);
+      ofRotateZDeg(angle.value());
       ofDrawTriangle(0, agent_rad, 0, -agent_rad, agent_rad, 0);
       ofPopMatrix();
     }
