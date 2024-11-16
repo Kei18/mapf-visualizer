@@ -75,6 +75,18 @@ mapf-visualizer assets/random-32-32-20.map assets/demo_random-32-32-20.txt
 
 You can manipulate it via your keyboard. See printed info.
 
+### Orientation
+
+The agent orientation is supported, thanks to [@JustinShetty](https://github.com/JustinShetty).
+Try:
+
+```sh
+mapf-visualizer assets/2x2.map assets/demo_2x2.txt
+```
+
+![](./assets/orientation.gif)
+
+
 ## Input format of planning result
 
 e.g.,
@@ -111,6 +123,6 @@ pre-commit install
 
 This software is released under the MIT License, see [LICENSE.txt](LICENCE.txt).
 
-## Author
+## Maintainer
 
 [Keisuke Okumura](https://kei18.github.io)
