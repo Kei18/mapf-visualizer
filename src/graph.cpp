@@ -110,7 +110,7 @@ std::string Orientation::to_str() const
   }
 }
 
-std::optional<float> Orientation::to_angle() const
+float Orientation::to_angle() const
 {
   switch (value) {
     case X_MINUS:
@@ -122,6 +122,6 @@ std::optional<float> Orientation::to_angle() const
     case Y_PLUS:
       return 90;
     default:
-      return std::nullopt;
+      return NAN;
   }
 }

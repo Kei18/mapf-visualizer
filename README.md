@@ -9,7 +9,7 @@
 
 Simple & scalable multi-agent pathfinding (MAPF) visualizer for research usage.
 
-Based on [openFrameworks](https://openframeworks.cc/), written in C++
+Based on [openFrameworks](https://openframeworks.cc/), written in C++14.
 
 </div>
 

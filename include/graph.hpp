@@ -1,5 +1,4 @@
 #pragma once
-#include <optional>
 #include <string>
 #include <vector>
 
@@ -52,7 +51,7 @@ public:
     return Orientation::NONE;
   }
   std::string to_str() const;
-  std::optional<float> to_angle() const;
+  float to_angle() const;
 
   constexpr operator Value() const { return value; }
   explicit operator bool() const = delete;
