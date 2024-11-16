@@ -9,7 +9,7 @@
 
 Simple & scalable multi-agent pathfinding (MAPF) visualizer for research usage.
 
-Based on [openFrameworks](https://openframeworks.cc/), written in C++
+Based on [openFrameworks](https://openframeworks.cc/), written in C++14.
 
 </div>
 
@@ -35,12 +35,12 @@ echo -e "\nexport PATH=$(pwd)/bin/mapf-visualizer.app/Contents/MacOS:\$PATH" >> 
 
 required: around 10 minutes
 
-### for Ubuntu 20.04
+### for Ubuntu 24.04
 
 ```sh
 git clone https://github.com/Kei18/mapf-visualizer.git
 cd mapf-visualizer
-wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_linux64gcc6_release.tar.gz
+wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.12.0/of_v0.12.0_linux64gcc6_release.tar.gz
 tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 --one-top-level=openFrameworks
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
@@ -74,6 +74,18 @@ mapf-visualizer assets/random-32-32-20.map assets/demo_random-32-32-20.txt
 ```
 
 You can manipulate it via your keyboard. See printed info.
+
+### Orientation
+
+The agent orientation is supported, thanks to [@JustinShetty](https://github.com/JustinShetty).
+Try:
+
+```sh
+mapf-visualizer assets/2x2.map assets/demo_2x2.txt
+```
+
+![](./assets/orientation.gif)
+
 
 ## Input format of planning result
 
@@ -111,6 +123,6 @@ pre-commit install
 
 This software is released under the MIT License, see [LICENSE.txt](LICENCE.txt).
 
-## Author
+## Maintainer
 
 [Keisuke Okumura](https://kei18.github.io)

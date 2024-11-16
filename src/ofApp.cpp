@@ -130,7 +130,8 @@ void ofApp::draw()
       auto y_draw =
           y * scale - scale / 2 + window_y_top_buffer + scale / 2 - 0.15;
       auto gridline_space = flg_grid ? 0.3 : 0.0;
-      ofDrawRectangle(x_draw, y_draw, scale - gridline_space, scale - gridline_space);
+      ofDrawRectangle(x_draw, y_draw, scale - gridline_space,
+                      scale - gridline_space);
       if (flg_font) {
         ofSetColor(Color::font);
         font.drawString(std::to_string(index), x_draw + 1,
@@ -143,10 +144,20 @@ void ofApp::draw()
   if (flg_goal) {
     for (int i = 0; i < N; ++i) {
       ofSetColor(Color::agents[i % Color::agents.size()]);
-      auto g = goals[i];
+      auto g = goals[i].v;
+      auto o = goals[i].o;
       int x = g->x * scale + window_x_buffer + scale / 2;
       int y = g->y * scale + window_y_top_buffer + scale / 2;
       ofDrawRectangle(x - goal_rad / 2, y - goal_rad / 2, goal_rad, goal_rad);
+
+      if (o != Orientation::NONE) {
+        ofSetColor(255, 255, 255);
+        ofPushMatrix();
+        ofTranslate(x, y);
+        ofRotateZDeg(o.to_angle());
+        ofDrawTriangle(0, goal_rad / 2, 0, -goal_rad / 2, goal_rad / 2, 0);
+        ofPopMatrix();
+      }
     }
   }
 
@@ -157,14 +168,26 @@ void ofApp::draw()
     auto t2 = t1 + 1;
 
     // agent position
-    auto v = P->at(t1)[i];
+    auto p_t1 = P->at(t1)[i];
+    auto v = p_t1.v;
+    auto o = p_t1.o;
     float x = v->x;
     float y = v->y;
+    float angle = o.to_angle();
 
     if (t2 <= T) {
-      auto u = P->at(t2)[i];
+      auto p_t2 = P->at(t2)[i];
+      auto u = p_t2.v;
       x += (u->x - x) * (timestep_slider - t1);
       y += (u->y - y) * (timestep_slider - t1);
+
+      if (o != Orientation::NONE) {
+        float angle_next = p_t2.o.to_angle();
+        float diff = angle_next - angle;
+        if (diff > 180.0f) diff -= 360.0f;
+        if (diff < -180.0f) diff += 360.0f;
+        angle += diff * (timestep_slider - t1);
+      }
     }
     x *= scale;
     y *= scale;
@@ -175,19 +198,19 @@ void ofApp::draw()
 
     // goal
     if (line_mode == LINE_MODE::STRAIGHT) {
-      ofDrawLine(goals[i]->x * scale + window_x_buffer + scale / 2,
-                 goals[i]->y * scale + window_y_top_buffer + scale / 2, x, y);
+      ofDrawLine(goals[i].v->x * scale + window_x_buffer + scale / 2,
+                 goals[i].v->y * scale + window_y_top_buffer + scale / 2, x, y);
     } else if (line_mode == LINE_MODE::PATH) {
       // next loc
       ofSetLineWidth(2);
       if (t2 <= T) {
-        auto u = P->at(t2)[i];
+        auto u = P->at(t2)[i].v;
         ofDrawLine(x, y, u->x * scale + window_x_buffer + scale / 2,
                    u->y * scale + window_y_top_buffer + scale / 2);
       }
       for (int t = t1 + 1; t < T; ++t) {
-        auto v_from = P->at(t)[i];
-        auto v_to = P->at(t + 1)[i];
+        auto v_from = P->at(t)[i].v;
+        auto v_to = P->at(t + 1)[i].v;
         if (v_from == v_to) continue;
         ofDrawLine(v_from->x * scale + window_x_buffer + scale / 2,
                    v_from->y * scale + window_y_top_buffer + scale / 2,
@@ -198,9 +221,19 @@ void ofApp::draw()
     }
 
     // agent at goal
-    if (v == goals[i]) {
+    if (p_t1 == goals[i]) {
       ofSetColor(255, 255, 255);
       ofDrawCircle(x, y, agent_rad * 0.7);
+    }
+
+    // agent orientation
+    if (o != Orientation::NONE) {
+      ofSetColor(255, 255, 255);
+      ofPushMatrix();
+      ofTranslate(x, y);
+      ofRotateZDeg(angle);
+      ofDrawTriangle(0, agent_rad, 0, -agent_rad, agent_rad, 0);
+      ofPopMatrix();
     }
 
     // id

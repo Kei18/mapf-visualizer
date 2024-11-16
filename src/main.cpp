@@ -5,7 +5,8 @@
 #include "../include/ofApp.hpp"
 #include "ofMain.h"
 
-const std::regex r_pos = std::regex(R"(\((\d+),(\d+)\),)");
+const std::regex r_pos =
+    std::regex(R"(\((\d+),(\d+),?([XY]{1}_[A-Z]{4,5})?\),)");
 
 int main(int argc, char *argv[])
 {
@@ -28,7 +29,7 @@ int main(int argc, char *argv[])
   std::smatch m, results;
   while (getline(solution_file, line)) {
     // so we only process real solution lines
-    if(line.find(":(") == std::string::npos) continue;
+    if (line.find(":(") == std::string::npos) continue;
 
     auto iter = line.cbegin();
     Config c;
@@ -37,7 +38,11 @@ int main(int argc, char *argv[])
       if (std::regex_search(iter, search_end, m, r_pos)) {
         auto x = std::stoi(m[1].str());
         auto y = std::stoi(m[2].str());
-        c.push_back(G.U[G.width * y + x]);
+        Orientation o = Orientation::NONE;
+        if (m[3].matched) {
+          o = Orientation::from_string(m[3].str());
+        }
+        c.push_back(Pose(G.U[G.width * y + x], o));
         iter += m[0].length();
       } else {
         break;
